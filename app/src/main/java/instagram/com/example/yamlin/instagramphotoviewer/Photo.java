@@ -11,14 +11,16 @@ import java.util.List;
  * Created by yamlin on 7/25/15.
  */
 public class Photo {
+    public String id;
+
+    public Long likeCount;
     public Long createTs;
     public String imageUrl;
     public String userImageUrl;
-
     public String user;
     public String text;
+    public List<Comment> comments;
 
-    public Long likeCount;
 
     public static List<Photo> getPhotoList(JSONArray array) {
 
@@ -35,19 +37,24 @@ public class Photo {
                     JSONObject images = obj.getJSONObject("images");
                     JSONObject lowResolution = images.getJSONObject("standard_resolution");
                     photo.imageUrl = lowResolution.getString("url");
+                    photo.id = obj.getString("id");
                     photo.createTs = obj.optLong("created_time");
+
                     JSONObject like = obj.getJSONObject("likes");
                     photo.likeCount = like.optLong("count");
 
                     JSONObject caption = obj.optJSONObject("caption");
                     if (caption != null) {
                         photo.text = caption.optString("text");
-                        JSONObject from = caption.optJSONObject("from");
-                        if (from != null) {
-                            photo.user = from.optString("full_name");
-                            photo.userImageUrl = from.optString("profile_picture");
-                        }
                     }
+
+                    JSONObject user = obj.getJSONObject("user");
+                    photo.user = user.getString("username");
+                    photo.userImageUrl = user.getString("profile_picture");
+
+                    JSONObject comments = obj.getJSONObject("comments");
+                    photo.comments = Comment.getComments(comments.getJSONArray("data"));
+
                     photoList.add(photo);
                 }
             } catch (JSONException e) {

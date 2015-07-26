@@ -25,6 +25,9 @@ public class InstgramAdapter extends ArrayAdapter<Photo> {
         TextView user;
         TextView timestamp;
         TextView likeCount;
+        TextView commentUser;
+        TextView commentTS;
+        TextView comment;
     }
 
     public InstgramAdapter(Context context, List<Photo> photos) {
@@ -34,6 +37,8 @@ public class InstgramAdapter extends ArrayAdapter<Photo> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
+        long now = System.currentTimeMillis();
+
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -41,10 +46,13 @@ public class InstgramAdapter extends ArrayAdapter<Photo> {
             convertView = inflater.inflate(R.layout.item_view, parent, false);
             viewHolder.userImage = (ImageView) convertView.findViewById(R.id.imgUser);
             viewHolder.img = (ImageView) convertView.findViewById(R.id.imageView);
-            viewHolder.text = (TextView) convertView.findViewById(R.id.tvUser);
+            viewHolder.text = (TextView) convertView.findViewById(R.id.tvText);
             viewHolder.user = (TextView) convertView.findViewById(R.id.tvUser);
             viewHolder.timestamp = (TextView) convertView.findViewById(R.id.tvTS);
             viewHolder.likeCount = (TextView) convertView.findViewById(R.id.tvLike);
+            viewHolder.commentUser = (TextView) convertView.findViewById(R.id.tvCommentUser);
+            viewHolder.commentTS = (TextView) convertView.findViewById(R.id.tvCommentTS);
+            viewHolder.comment = (TextView) convertView.findViewById(R.id.tvComment);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -52,7 +60,7 @@ public class InstgramAdapter extends ArrayAdapter<Photo> {
 
         Photo photo = getItem(position);
 
-        viewHolder.user.setText("@" + photo.user + " -- ");
+        viewHolder.user.setText("#" + photo.user + "  ");
 
         if (photo.userImageUrl != null) {
             Picasso.with(getContext())
@@ -69,7 +77,6 @@ public class InstgramAdapter extends ArrayAdapter<Photo> {
                     .into(viewHolder.img);
         }
         if (photo.createTs != null) {
-            long now = System.currentTimeMillis();
             viewHolder.timestamp.setText(DateUtils.getRelativeTimeSpanString(
                     photo.createTs * 1000, now, DateUtils.DAY_IN_MILLIS));
         }
@@ -78,6 +85,21 @@ public class InstgramAdapter extends ArrayAdapter<Photo> {
             viewHolder.likeCount.setText(" " + photo.likeCount + " likes");
         }
 
+        // set the last comment
+        if (photo.comments != null && photo.comments.size() > 0) {
+            Comment lastComment = photo.comments.get(photo.comments.size() - 1);
+            if (lastComment.user != null) {
+                viewHolder.commentUser.setText("#" + lastComment.user + "  ");
+            }
+            if (lastComment.createTS != null) {
+                viewHolder.commentTS.setText(DateUtils.getRelativeTimeSpanString(
+                        lastComment.createTS * 1000, now, DateUtils.DAY_IN_MILLIS));
+            }
+            if (lastComment.text != null) {
+                viewHolder.comment.setText(lastComment.text);
+            }
+
+        }
         return convertView;
     }
 }
