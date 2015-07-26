@@ -3,7 +3,7 @@
 
 - [*] User can scroll through current popular photos from Instagram 
 - [*] For each photo displayed, user can see the following details: Graphic, Caption, Username 
-- [*] (Optional) relative timestamp, like count, user profile image 
+- [*] Optional: relative timestamp, like count, user profile image 
 
 ## The following advanced user stories are optional:
 
