@@ -6,64 +6,90 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@color/background_material_light">
+    android:background="#00997F">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutUser">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgUser"
+            android:scaleType="fitCenter"
+            app:riv_corner_radius="5dip"
+            app:riv_border_width="2dip"
+            app:riv_border_color="#333333"
+            app:riv_mutate_background="true"
+            app:riv_tile_mode="repeat"
+            app:riv_oval="true" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="user"
+                android:id="@+id/tvUser"
+                android:layout_marginLeft="5dp"
+                android:textSize="30sp" />
 
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgUser"
-        android:scaleType="fitCenter"
-        app:riv_corner_radius="5dip"
-        app:riv_border_width="2dip"
-        app:riv_border_color="#333333"
-        app:riv_mutate_background="true"
-        app:riv_tile_mode="repeat"
-        app:riv_oval="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="user"
-        android:id="@+id/tvUser"
-        android:layout_toRightOf="@+id/imgUser"
-        android:layout_marginLeft="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="ts"
-        android:id="@+id/tvTS"
-        android:layout_alignTop="@+id/tvUser"
-        android:layout_toRightOf="@+id/tvUser"
-        android:layout_toEndOf="@+id/tvUser" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="like"
-        android:id="@+id/tvLike"
-        android:layout_below="@+id/tvTS"
-        android:layout_alignLeft="@+id/tvUser"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="like"
+                android:id="@+id/tvLike"
+                android:layout_below="@+id/tvUser"
+                android:layout_alignLeft="@+id/tvUser"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="ts"
+                android:id="@+id/tvTS"
+                android:layout_below="@+id/tvLike"
+                android:textSize="30sp"
+                android:layout_alignLeft="@+id/tvUser"
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
 
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/imageView"
-        android:layout_below="@+id/imgUser"
+        android:layout_below="@+id/layoutUser"
         android:layout_marginTop="5dp" />
 
 
+
+
+
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/tvText"
+        android:textSize="30sp"
         android:layout_below="@+id/imageView" />
     <View
         android:layout_width="fill_parent"
@@ -74,25 +100,36 @@
         android:id="@+id/separator"
         android:background="@android:color/darker_gray"/>
 
-
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="user"
-        android:id="@+id/tvCommentUser"
         android:layout_below="@+id/separator"
-        android:layout_marginLeft="5dp"/>
+        android:id="@+id/layoutComment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="comment"
-        android:id="@+id/tvCommentTS"
-        android:layout_toRightOf="@+id/tvCommentUser"
-        android:layout_alignTop="@+id/tvCommentUser"
-        android:layout_marginLeft="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="user"
+            android:id="@+id/tvCommentUser"
+            android:layout_below="@+id/separator"
+            android:textSize="30sp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="comment"
+            android:id="@+id/tvCommentTS"
+            android:layout_toRightOf="@+id/tvCommentUser"
+            android:layout_alignTop="@+id/tvCommentUser"
+            android:textSize="30sp"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,7 +137,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="comment"
         android:id="@+id/tvComment"
-        android:layout_below="@+id/tvCommentUser"
+        android:layout_below="@+id/layoutComment"
+        android:textSize="30sp"
         android:layout_marginTop="5dp"/>
 
 </RelativeLayout>

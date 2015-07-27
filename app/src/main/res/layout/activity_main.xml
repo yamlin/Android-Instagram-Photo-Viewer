@@ -18,6 +18,8 @@
         android:id="@+id/listView"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>
